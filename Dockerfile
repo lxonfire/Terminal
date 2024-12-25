@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y
 WORKDIR /app
 
 # Copy the entire current directory into the container at /app
-COPY . /app
+COPY . .
 
 # Install required Python packages
 RUN pip3 install --no-cache-dir -r requirements.txt
