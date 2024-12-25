@@ -14,7 +14,7 @@ WORKDIR /app
 COPY . /app
 
 # Install pyxtermjs
-RUN pip3 install -r requirements.txt --break-system-packages
+RUN pip3 install -r requirements.txt
 
 # Run the pyxtermjs command when the container starts
 CMD ["python3", "main.py"]
