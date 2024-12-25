@@ -13,7 +13,7 @@ WORKDIR /app
 # Copy the entire current directory into the container at /app
 COPY . /app
 
-# Install Python packages from requirements.txt
+# Install pyxtermjs
 RUN pip3 install -r requirements.txt --break-system-packages
 
 # Run the pyxtermjs command when the container starts
