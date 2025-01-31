@@ -5,9 +5,8 @@ FROM ubuntu:latest
 RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
+    python3-venv \
     && rm -rf /var/lib/apt/lists/*
-    
-RUN pip install --upgrade pip setuptools
 
 # Set the working directory in the container
 WORKDIR /app
@@ -15,8 +14,10 @@ WORKDIR /app
 # Copy the entire current directory into the container at /app
 COPY . /app
 
-# Install pyxtermjs
-RUN pip3 install -r requirements.txt --break-system-packages
+# Create a virtual environment and install dependencies
+RUN python3 -m venv /app/venv && \
+    /app/venv/bin/pip install --upgrade pip && \
+    /app/venv/bin/pip install -r requirements.txt
 
-# Run the pyxtermjs command when the container starts
-CMD ["python3", "main.py"]
+# Use the virtual environment to run the app
+CMD ["/app/venv/bin/python", "main.py"]
